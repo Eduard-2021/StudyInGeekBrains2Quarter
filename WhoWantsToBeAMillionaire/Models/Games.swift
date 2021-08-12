@@ -15,15 +15,18 @@ class Games {
             resultsCaretaker.save(results: self.results)
         }
     }
+    var allQuestions: [Question] {
+        didSet{
+            questionsCaretaker.save(questions: self.allQuestions)
+        }
+    }
     private init(){
         self.results = self.resultsCaretaker.retrieveResults()
+        self.allQuestions = self.questionsCaretaker.retrieveQuestions()
     }
     private let resultsCaretaker = ResultsCaretaker()
+    private let questionsCaretaker = QuestionsCaretaker()
+    var orderOfQuestions: Order = .normal
 }
 
-struct Results: Codable {
-    var percentOfCorrectAnswers = 100
-    var name = ""
-    var moneyWon = 0
-    var date = Date()
-}
+

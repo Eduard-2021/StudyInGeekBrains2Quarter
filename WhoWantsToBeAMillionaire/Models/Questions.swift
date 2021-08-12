@@ -5,7 +5,7 @@
 //  Created by Eduard on 07.08.2021.
 //
 
-struct Question {
+struct Question: Codable {
     var question: String = ""
     var answerFirst: String = ""
     var answerSecond: String = ""

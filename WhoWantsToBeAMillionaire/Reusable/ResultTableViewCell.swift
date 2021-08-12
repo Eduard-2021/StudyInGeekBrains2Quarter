@@ -14,11 +14,6 @@ class ResultTableViewCell: UITableViewCell {
     @IBOutlet weak var moneyWon: UILabel!
     @IBOutlet weak var persentOfWins: UILabel!
     
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
     func config(name: String, dateOfGame: Date, persent: Int, moneyWon: Int){
         self.name.text = name
         let dateFormatter = DateFormatter()
