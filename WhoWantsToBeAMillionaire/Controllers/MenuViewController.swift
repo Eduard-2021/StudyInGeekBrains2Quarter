@@ -7,18 +7,22 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class MenuViewController: UIViewController {
 
     private let dispGroup = DispatchGroup()
     
     @IBOutlet weak var logoMillionaire: UIImageView!
     @IBAction func pressButtonPlay(_ sender: Any) {
-        let thirdVC = storyboard?.instantiateViewController(withIdentifier: "ThirdViewController") as! ThirdViewController
+        let thirdVC = storyboard?.instantiateViewController(withIdentifier: "ThirdViewController") as! QuestionsViewController
         let gameSession = GameSession()
-        if Games.shared.gameSession == nil {
-           Games.shared.gameSession = gameSession
+        
+        if (Games.shared.gameSession?.name == "") || Games.shared.gameSession == nil {
+           if Games.shared.gameSession == nil {Games.shared.gameSession = gameSession}
+           if  Games.shared.gameSession!.numberOfQuestions < Games.shared.allQuestions.count {
+            Games.shared.gameSession?.numberOfQuestions = Games.shared.allQuestions.count
+           }
            nameInput(vc: thirdVC)
-           thirdVC.gameSessionDelegate = gameSession.self
+           thirdVC.gameSessionDelegate = Games.shared.gameSession.self
         }
         else {
             thirdVC.gameSessionDelegate = Games.shared.gameSession.self
@@ -55,7 +59,7 @@ class SecondViewController: UIViewController {
     }
 }
 
-extension SecondViewController: DismissDelegete {
+extension MenuViewController: DismissDelegete {
     func funcDismissDelegate() {
         dismiss(animated: false, completion: nil)
     }

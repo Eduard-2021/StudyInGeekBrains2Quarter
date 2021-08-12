@@ -7,13 +7,14 @@
 
 import UIKit
 
-class FourthViewController: UIViewController {
+class ResultsViewController: UIViewController {
 
     @IBOutlet weak var logoMillionaire: UIImageView!
     
+    @IBOutlet weak var returnToMenuView: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
-    @IBAction func returnOnSecondView(_ sender: Any) {
+    @IBAction func returnToMenuView(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     override func viewDidLoad() {
@@ -23,11 +24,13 @@ class FourthViewController: UIViewController {
         tableView.dataSource = self
         let nib = UINib(nibName: "ResultTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "ResultTableViewCell")
+        
+        returnToMenuView.imageView?.layer.transform = CATransform3DMakeScale(1.4, 1.4, 1.4)
     }
 
 }
 
-extension FourthViewController: UITableViewDelegate, UITableViewDataSource {
+extension ResultsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         Games.shared.results.count
     }

@@ -7,15 +7,21 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
+class StartViewController: UIViewController {
 
     @IBOutlet weak var logoMillionaire: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         logoMillionaire.layer.cornerRadius = 150
+//        clearUserDefaults()
     }
 
+    private func clearUserDefaults() {
+        let defaults = UserDefaults.standard
+        defaults.removeObject(forKey: "Results")
+        defaults.removeObject(forKey: "Questions")
+    }
 
 }
 
